@@ -9,6 +9,7 @@ function App() {
  const todolist = [{ name: "Bhubaneswar", date: "24/02/2026" },{ name: "Bhubaneswar", date: "24/02/2026" },{ name: "Bhubaneswar", date: "24/02/2026" },{ name: "Bhubaneswar", date: "24/02/2026" }];
 
   return (<div className="body">
+    
       <AppName></AppName>
       <Addtodo></Addtodo>
       <Todoitems todoitems={todolist}></Todoitems>
