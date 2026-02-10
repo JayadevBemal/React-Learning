@@ -1,0 +1,8 @@
+.addTodo{
+  width: 100%;
+  height: 90%;
+}
+.todoBox{
+  text-align: left;
+  margin-bottom: 10px;
+}
