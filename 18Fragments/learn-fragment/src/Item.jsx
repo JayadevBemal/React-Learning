@@ -1,7 +1,9 @@
-const Item = ({Listitems}) => {
+import styles from './Item.module.css'
 
-  return <li className="list-group-item" >
-          {Listitems}
+const Item = ({Listitems}) => {
+console.log(styles)
+  return <li className= {`${styles["jb-item"]} list-group-item`} >
+          <span className={`${styles["jb-span"]}`}>{Listitems}</span>
         </li> 
 }
 export default Item;
