@@ -1,0 +1,23 @@
+.calcContainer{
+  border: 1px solid black ;
+  width: 278px;
+  margin: 20px;
+  
+}
+.inputBox{
+  margin: 10px auto;
+  width: 238px;
+}
+.buttonContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+.btn{
+  border: 1px solid #8d9cb340;
+  height: 60px;
+  width: 60px;
+  margin: 5px;
+  
+}
