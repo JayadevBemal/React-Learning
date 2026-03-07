@@ -1,13 +1,17 @@
 import TodoItem from "./TodoItem";
 
-const Todoitems = ({todoitems}) =>
+const Todoitems = ({items,deletetodo}) =>
 {
-console.log(todoitems);
+
+ console.log(items)
+
   return <div >
-   {todoitems.map((i)=>  <TodoItem
-          todoDate={i.date}
-          todoName={i.name}
-        ></TodoItem>)}
+   {items.map((item,index)=>  <TodoItem
+          todoDate={item.date}
+          todoName={item.name}
+          deletetodo={()=> deletetodo(index)}
+          key={index}
+         ></TodoItem>)}
        
       </div>
 
