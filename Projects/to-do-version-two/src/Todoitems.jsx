@@ -1,20 +1,21 @@
+import { useContext } from "react";
 import TodoItem from "./TodoItem";
+import { todoContext } from "./storeContext";
 
-const Todoitems = ({items,deletetodo}) =>
-{
+const Todoitems = () => {
+  const { todolist,deleteItem } = useContext(todoContext);  
 
- console.log(items)
-
-  return <div >
-   {items.map((item,index)=>  <TodoItem
-          todoDate={item.date}
-          todoName={item.name}
-          deletetodo={()=> deletetodo(index)}
+  return (
+    <div>
+      {todolist.map((item, index) => (
+        <TodoItem
           key={index}
-         ></TodoItem>)}
-       
-      </div>
+          todoitem={item}
+          deletetodo={() => deleteItem(index)}
+        ></TodoItem>
+      ))}
+    </div>
+  );
+};
 
-}
-
-export default Todoitems
+export default Todoitems;

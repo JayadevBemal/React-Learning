@@ -2,48 +2,53 @@ import AppName from "./AppName";
 import Addtodo from "./Addtodo";
 import Todoitems from "./Todoitems";
 import "./Style.css";
-import { useState } from "react";
+import { useReducer } from "react";
+import Todoitemprovider from "./storeContext";
 
-function App() {
-  let [enteredname, setenteredname] = useState("");
-  let [entereddate, setentereddate] = useState("");
-
-  let namefun = (item) => {
-    setenteredname(item.target.value);
-  };
-  let datefun = (item) => {
-    setentereddate(item.target.value);
-  };
-
-  let [todolist, settodolist] = useState([]);
 
 
 
-  let buttonclickadd = () => {
-    let newOne = { name: enteredname, date: entereddate };
-    settodolist((prev) => [...prev, newOne]);
+function App() {
   
-    setenteredname("")
-    setentereddate("")
-  };
+// const todoitemsReducer = (todolist, action) => {
+// let newtodoitems = todolist;
+// if (action.type === "NEW_ITEM") {
+//   newtodoitems = [...todolist, action.payload];
+//   return newtodoitems;
+// } else if (action.type === "CUT_ITEM") {
+//   newtodoitems = todolist.filter((i, j) => j !== action.payload);
+//   return newtodoitems;
+// }
+// };
 
-  let buttonclickdelete = (deleteindex) => {
-    settodolist(prev => prev.filter((item,index) => index !== deleteindex))
-  }
+
+
+// let [todolist, dispatchtodolist] = useReducer(todoitemsReducer, []);
+//   let addnewItem = (event) => {
+//     const newItem = {
+//       type: "NEW_ITEM",
+//       payload: event,
+//     };
+//     dispatchtodolist(newItem);
+
+//   };
+//   let deleteItem = (todelete) => {
+//     const removeitem = {
+//       type: "CUT_ITEM",
+//       payload: todelete,
+//     };
+//     dispatchtodolist(removeitem);
+//   }
 
   return (
-    <div className="body">
-      <AppName></AppName>
-      <Addtodo
-        enteredname={namefun}
-        entereddate={datefun}
-        buttonclick={buttonclickadd}
-        blankname = {enteredname}
-        blankdate = {entereddate}
 
-      ></Addtodo>
-      <Todoitems items={todolist} deletetodo={buttonclickdelete}></Todoitems>
-    </div>
+ <Todoitemprovider>
+  <AppName></AppName>
+  <Addtodo ></Addtodo>
+  <Todoitems></Todoitems>
+ </Todoitemprovider>
   );
+
 }
+
 export default App;

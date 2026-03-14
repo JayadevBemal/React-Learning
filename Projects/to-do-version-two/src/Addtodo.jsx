@@ -1,19 +1,56 @@
-import style from './Addtodo.module.css'
+import style from "./Addtodo.module.css";
+import { useState, useContext } from "react";
 import { RiAddCircleFill } from "react-icons/ri";
-function Addtodo( {enteredname,entereddate,buttonclick,blankname,blankdate}){
+import { todoContext } from "./storeContext";
+function Addtodo() {
+  let [name, setname] = useState("");
+  let [date, setdate] = useState("");
+  const {todolist,addnewItem } = useContext(todoContext);
 
-  return <div className="container text-center ">
-        <div className={`row align-items-center g-3 ${style.todoBox}`}>
-          <div className="col-5"><input className={style.addTodo} type="text" name="" id="" placeholder="Enter todo here" onChange={enteredname} value={blankname}/></div>
-          <div className="col-5"><input className={style.addTodo} type="date" onChange={entereddate} value={blankdate} /></div>
-          <div className="col-2 jb-button">
-            <button type="button" className="btn btn-success jb-button w-100 " onClick={buttonclick}  disabled={blankname.trim() === "" || blankdate === ""}>
-              <RiAddCircleFill />
-            </button>
-          </div>
+
+  let buttonclick = (event) => {
+    event.preventDefault();
+
+    let newOne = { name: name, date: date };
+    addnewItem(newOne);
+
+    setname("");
+    setdate("");
+  
+  };
+
+  return (
+    <form className="container text-center " onSubmit={buttonclick}>
+      <div className={`row align-items-center g-3 ${style.todoBox}`}>
+        <div className="col-5">
+          <input
+            value={name}
+            className={style.addTodo}
+            type="text"
+            placeholder="Enter todo here"
+            onChange={(event) => setname(event.target.value)}
+          />
         </div>
+        <div className="col-5">
+          <input
+            value={date}
+            className={style.addTodo}
+            type="date"
+            onChange={(event) => setdate(event.target.value)}
+          />
         </div>
-      
+        <div className="col-2 jb-button">
+          <button
+            type="submit"
+            className="btn btn-success jb-button w-100 "
+            disabled={name === "" || date === ""}
+          >
+            <RiAddCircleFill />
+          </button>
+        </div>
+      </div>
+    </form>
+  );
 }
 
 export default Addtodo;
